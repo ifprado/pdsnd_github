@@ -5,7 +5,7 @@
 ### Posting "Explore US Bikeshare Data" to my GitHub
 
 ### Description
-This project was exploring data provided by Motivate to display bike usage patterns.
+This project was exploring data provided by Motivate to display bike usage patterns. I used the NumPY and Pandas python libraries in this project. My bikeshare .py file ingested a csv file that the user provided. Then filtered out the data based on month and day. Then statistical information regarding the dataset was presented to the user. Missing columns were also handled within the python code. The user was prompted whether or not to continue through the project.
 
 ### Files used
 * bikeshare.py
