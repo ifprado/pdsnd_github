@@ -14,4 +14,5 @@ new\_york\_city.csv
 washington.csv
 
 ### Credits
-It's important to give proper credit. Add links to any repo that inspired you or blogposts you consulted.
+This blog helped me a bunch https://towardsdatascience.com/basic-time-series-manipulation-with-pandas-4432afee64ea
+and this youtube video https://www.youtube.com/watch?v=POe1cufDWFs
