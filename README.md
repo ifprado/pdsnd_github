@@ -1,8 +1,8 @@
 ### Date created
-Include the date you created this project and README file.
+Created Project: April 10, 2019
+Created README.md: April 10, 2019
 
-### Project Title
-Replace the Project Title
+### Posting "Explore US Bikeshare Data" to my GitHub
 
 ### Description
 Describe what your project is about and what it does
@@ -12,4 +12,3 @@ Include the files used
 
 ### Credits
 It's important to give proper credit. Add links to any repo that inspired you or blogposts you consulted.
-
