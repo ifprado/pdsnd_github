@@ -18,6 +18,9 @@ def get_filters():
     """
     print('Hello! Let\'s explore some US bikeshare data!')
     # TO DO: get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
+    """
+        I used the lower and title methods to provide consistency
+    """
     city = input("Please enter in one of these three cities - Chicago, New York City, Washington:\n").title()
     cities = ["Chicago", "New York City", "Washington"]
     while city not in cities:
@@ -158,7 +161,9 @@ def user_stats(df, city):
 
     print('The number of subscribers were {}\nThe number of customers were {}'.format(numOfSubscribers,numOfCustomers))
 
-
+    """
+        This conditional skips of washington.csv
+    """
     # TO DO: Display counts of gender
     if city != 'washington':
         numOfMen = df[df['Gender'] == 'Male'].Gender.count()
