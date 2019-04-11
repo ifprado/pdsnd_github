@@ -7,6 +7,11 @@ CITY_DATA = { 'chicago': 'chicago.csv',
               'new york city': 'new_york_city.csv',
               'washington': 'washington.csv' }
 
+def display_raw_data(df, currentFunction, listOfColumns):
+    usrInput = input('Would you like to see 5 lines of raw data from {}? yes/no\n'.format(currentFunction)).lower()
+    if usrInput != 'no':
+        print(df[listOfColumns].sample(frac=1).head())
+
 def get_filters():
     """
     Asks user to specify a city, month, and day to analyze.
@@ -96,7 +101,15 @@ def time_stats(df):
     print("Most common month is {}".format(mostCommonMonth))
 
     # TO DO: display the most common day of week
-    mostCommonDay = days[df['Start_Time'].dt.day.mode()[0]-1]
+    convert_Date_To_DayOfWeek_List = [0,0,0,0,0,0,0]
+    for dateValue in df['Start_Time']:
+        D = dateValue.year % 100
+        forumlaConverterValue = dateValue.day + + int((13*dateValue.month-1)/5) + D + int(D/4) - 35
+        forumlaConverterValueIndex = forumlaConverterValue % 7
+        convert_Date_To_DayOfWeek_List[forumlaConverterValueIndex] += 1
+    mostCommonDay = days[convert_Date_To_DayOfWeek_List.index(max(convert_Date_To_DayOfWeek_List))]    
+    
+    #mostCommonDay = days[df['Start_Time'].dt.day.mode()[0]-1]
     print("Most common day is {}".format(mostCommonDay))
 
     # TO DO: display the most common start hour
@@ -105,6 +118,8 @@ def time_stats(df):
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
+    
+    display_raw_data(df, 'time_stats', ['Start_Time','End_Time'])
 
 
 def station_stats(df):
@@ -129,6 +144,8 @@ def station_stats(df):
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
+    
+    display_raw_data(df, 'station_stats', ['Start_Station','End_Station'])
 
 
 def trip_duration_stats(df):
@@ -147,6 +164,8 @@ def trip_duration_stats(df):
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
+    
+    display_raw_data(df, 'trip_duration_stats', ['Trip_Duration'])
 
 
 def user_stats(df, city):
@@ -161,9 +180,16 @@ def user_stats(df, city):
 
     print('The number of subscribers were {}\nThe number of customers were {}'.format(numOfSubscribers,numOfCustomers))
 
+<<<<<<< HEAD
     """
         This conditional skips of washington.csv
     """
+||||||| merged common ancestors
+
+=======
+    lisOfUserColumns = ['User_Type']
+
+>>>>>>> refactoring
     # TO DO: Display counts of gender
     if city != 'washington':
         numOfMen = df[df['Gender'] == 'Male'].Gender.count()
@@ -171,6 +197,7 @@ def user_stats(df, city):
 
         print('The number of men were {}\nThe number of women were {}'.format(numOfMen,numOfWomen))
 
+        lisOfUserColumns.append('Gender')
 
     # TO DO: Display earliest, most recent, and most common year of birth
         earliestBirth = int(df.Birth_Year.min())
@@ -178,9 +205,12 @@ def user_stats(df, city):
         mostCommonBirth = int(df.Birth_Year.mode()[0])
         print('The earilest birth year was {}\nThe most recent birth year was {}\nThe most common birth year was {}'.format(earliestBirth,mostRecentBirth,mostCommonBirth))
 
+        lisOfUserColumns.append('Birth_Year')
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
+    
+    display_raw_data(df, 'user_stats', lisOfUserColumns)
 
 
 def main():
