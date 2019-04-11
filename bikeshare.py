@@ -98,7 +98,15 @@ def time_stats(df):
     print("Most common month is {}".format(mostCommonMonth))
 
     # TO DO: display the most common day of week
-    mostCommonDay = days[df['Start_Time'].dt.day.mode()[0]-1]
+    convert_Date_To_DayOfWeek_List = [0,0,0,0,0,0,0]
+    for dateValue in df['Start_Time']:
+        D = dateValue.year % 100
+        forumlaConverterValue = dateValue.day + + int((13*dateValue.month-1)/5) + D + int(D/4) - 35
+        forumlaConverterValueIndex = forumlaConverterValue % 7
+        convert_Date_To_DayOfWeek_List[forumlaConverterValueIndex] += 1
+    mostCommonDay = days[convert_Date_To_DayOfWeek_List.index(max(convert_Date_To_DayOfWeek_List))]    
+    
+    #mostCommonDay = days[df['Start_Time'].dt.day.mode()[0]-1]
     print("Most common day is {}".format(mostCommonDay))
 
     # TO DO: display the most common start hour
