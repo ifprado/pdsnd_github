@@ -7,6 +7,11 @@ CITY_DATA = { 'chicago': 'chicago.csv',
               'new york city': 'new_york_city.csv',
               'washington': 'washington.csv' }
 
+def display_raw_data(df, currentFunction, listOfColumns):
+    usrInput = input('Would you like to see 5 lines of raw data from {}? yes/no\n'.format(currentFunction)).lower()
+    if usrInput != 'no':
+        print(df[listOfColumns].sample(frac=1).head())
+
 def get_filters():
     """
     Asks user to specify a city, month, and day to analyze.
