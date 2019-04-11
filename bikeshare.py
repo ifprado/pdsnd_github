@@ -107,6 +107,8 @@ def time_stats(df):
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
+    
+    display_raw_data(df, 'time_stats', ['Start_Time','End_Time'])
 
 
 def station_stats(df):
@@ -131,6 +133,8 @@ def station_stats(df):
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
+    
+    display_raw_data(df, 'station_stats', ['Start_Station','End_Station'])
 
 
 def trip_duration_stats(df):
@@ -149,6 +153,8 @@ def trip_duration_stats(df):
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
+    
+    display_raw_data(df, 'trip_duration_stats', ['Trip_Duration'])
 
 
 def user_stats(df, city):
@@ -163,6 +169,7 @@ def user_stats(df, city):
 
     print('The number of subscribers were {}\nThe number of customers were {}'.format(numOfSubscribers,numOfCustomers))
 
+    lisOfUserColumns = ['User_Type']
 
     # TO DO: Display counts of gender
     if city != 'washington':
@@ -171,6 +178,7 @@ def user_stats(df, city):
 
         print('The number of men were {}\nThe number of women were {}'.format(numOfMen,numOfWomen))
 
+        lisOfUserColumns.append('Gender')
 
     # TO DO: Display earliest, most recent, and most common year of birth
         earliestBirth = int(df.Birth_Year.min())
@@ -178,9 +186,12 @@ def user_stats(df, city):
         mostCommonBirth = int(df.Birth_Year.mode()[0])
         print('The earilest birth year was {}\nThe most recent birth year was {}\nThe most common birth year was {}'.format(earliestBirth,mostRecentBirth,mostCommonBirth))
 
+        lisOfUserColumns.append('Birth_Year')
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
+    
+    display_raw_data(df, 'user_stats', lisOfUserColumns)
 
 
 def main():
